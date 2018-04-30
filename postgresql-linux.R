@@ -6,7 +6,7 @@
 library(RPostgreSQL)
 library(getPass)
 
-pgdrv <- DBI::dbDriver(drvName = "PostgreSQL")
+pgdrv <- dbDriver(drvName = "PostgreSQL")
 
 db <-DBI::dbConnect(pgdrv,
                     dbname="postgres",
