@@ -33,6 +33,7 @@ dbDisconnect(db)
 # # Install Java Client
 #
 # # Download MS SQL Server JDBC driver
+# https://docs.microsoft.com/en-us/sql/connect/sql-connection-libraries?view=sql-server-2017
 
 # install.packages('RJDBC')
 
