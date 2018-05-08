@@ -51,3 +51,22 @@ DBI::dbGetQuery(db,"SELECT * FROM IRIS")
 
 #Disconnect from database
 DBI::dbDisconnect(db)
+
+
+
+
+
+### pivot package ###
+# install.packages('pivot')
+
+library(dplyr)
+library(dbplyr)
+library(pivot)
+library(odbc)
+
+# Connect using the DSN
+db <- DBI::dbConnect(odbc::odbc(), "SQL")
+
+result <- tbl(db,"iris") %>% pivot(Species, mean(Petal.Length, na.rm = TRUE),
+                                 setosa, versicolor, virginica)
+sql_render(result)
