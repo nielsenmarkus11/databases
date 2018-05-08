@@ -40,13 +40,13 @@ library(RJDBC)
 library(getPass)
 
 # Specify driver and path to driver in RJDBC 
-db <- DBI::dbConnect(RJDBC::JDBC("org.postgresql.Driver","postgresql-42.2.2.jar"),
-                     url = "jdbc:postgresql://localhost:5432/postgres",
-                     user = "postgres",
-                     password = getPass("Enter Password:"))
+# For Integrated Authentication add to java library path
+options(java.parameters="-Djava.library.path=C:/Program Files/sqljdbc_6.4/enu/auth/x64") 
+db <- DBI::dbConnect(RJDBC::JDBC("com.microsoft.sqlserver.jdbc.SQLServerDriver","C:/Program Files/sqljdbc_6.4/enu/mssql-jdbc-6.4.0.jre8.jar"),
+                     url = "jdbc:sqlserver://localhost;databaseName=ML;integratedSecurity=true")
 
 # Execute SQL query
-DBI::dbGetQuery(db,"SELECT * FROM MTCARS")
+DBI::dbGetQuery(db,"SELECT * FROM IRIS")
 
 #Disconnect from database
 DBI::dbDisconnect(db)
